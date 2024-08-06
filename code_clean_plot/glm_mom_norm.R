@@ -12,7 +12,7 @@ triplets <- c("0_0_0", "0_0_1", "1_0_0", "1_0_1", "1_1_1")
 # c("0_0_0", "0_0_1", "1_0_0", "1_0_1", "1_1_1")
 # 遍历每个三元组
 for (triplet in triplets) {
-  file_path <- file.path("data_norm_1.2_clean_500", triplet)
+  file_path <- file.path("data/data_glm_mom_after_cluster", triplet)
   
   file_names <- list.files(file_path, pattern = "\\.Rda$", full.names = TRUE)
   
@@ -35,7 +35,7 @@ for (triplet in triplets) {
   p_over_n <- round(p_value / n_value, 2)
   # 定义图表布局和标题
   pdf_filename <- paste0(
-    "plots_mom_hist/glm_mom_norm_sparse_",
+    "plots/plots_mom_hist/glm_mom_norm_sparse_",
     Is_sparse,
     "_one_",
     Is_sparse_only_one,

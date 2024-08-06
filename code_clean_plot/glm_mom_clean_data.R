@@ -1,9 +1,8 @@
 library(dplyr)
 
 # 设置文件路径和输出路径
-file_path <- "data_mom_one_1.2_500"
-output_path <- "data_norm_1.2_clean_500"
-
+file_path <- "data/data_glm_mom"
+output_path <- "data/data_glm_mom_after_cluster"
 # 确保输出路径存在
 if (!dir.exists(output_path)) {
   dir.create(output_path)
