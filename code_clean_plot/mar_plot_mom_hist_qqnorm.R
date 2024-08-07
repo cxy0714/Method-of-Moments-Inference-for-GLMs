@@ -24,7 +24,8 @@ for (triplet in triplets) {
   # 加载最大的n值对应的文件
     load(file_names[max_n_index])
   
-    
+
+
   # 提取三元组的值
   triplet_parts <- strsplit(triplet, "_")[[1]]
   Is_sparse <- as.numeric(triplet_parts[1])
@@ -47,7 +48,7 @@ for (triplet in triplets) {
 
 # 定义图表布局和标题
 pdf(pdf_filename_parameters, height = 20, width = 16)
-par(mfrow = c(6, 4))
+par(mfrow = c(5, 4))
 
 # 标题
 titles <- c(

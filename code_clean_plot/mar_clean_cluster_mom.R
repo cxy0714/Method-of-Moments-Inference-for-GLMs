@@ -2,7 +2,7 @@ library(dplyr)
 library(purrr)
 
 # 设置文件路径和输出路径
-file_path <- "data/data_mar_mom"
+file_path <- "data/data_mar_mom_hist"
 
 # 获取所有文件名
 file_names <- list.files(file_path , pattern = "\\.Rda$", full.names = TRUE)

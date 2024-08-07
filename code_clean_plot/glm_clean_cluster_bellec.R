@@ -1,9 +1,9 @@
 library(dplyr)
 
 # 设置文件路径和输出路径
-file_path <- "data_bellec"
-output_path <- "data_bellec_1.2_clean_100"
-
+file_path <- "data/data_glm_bellec"
+output_path <- "data/data_glm_bellec_after_cluster"
+lambda_value = exp(seq(log(10) , log(.05) , length.out = 12))
 # 确保输出路径存在
 if (!dir.exists(output_path)) {
   dir.create(output_path)
@@ -32,12 +32,17 @@ for (triplet in triplets) {
   for (file in current_files) {
     load(file)
     
+    if (dim(experiment.data[[length(experiment.data)]]$alpha_de_N_p2_TT_Ge[[1]])[1] == 20 & 
+        dim(experiment.data[[length(experiment.data)]]$alpha_de_N_p2_TT_Ge[[1]])[2] == 12){
     bellec_data_total <- c(bellec_data_total, experiment.data)
     unique_seed_total <- c(unique_seed_total, unique_seed)
+    }
   }
   
   # 计算 n_iter * length(current_files)
   total_iter <- 2 * length(bellec_data_total)
+  
+
   
   # 保存合并后的对象
   save(

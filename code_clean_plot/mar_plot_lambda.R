@@ -14,7 +14,7 @@ library(latex2exp)
 
 # 定义三元组
 # c("0_0", "0_1", "1_0")
-triplets <- c("0_0")
+triplets <- c("0_0", "0_1", "1_0")
 file.path_mom <- "data/data_mar_mom"
 
 # 遍历每个三元组
@@ -68,11 +68,14 @@ for (triplet in triplets) {
   plot_data_psi[plot_data_psi$metric == "mse", ]$metric <- "Mean Square Error"
   
   ## celentano data process lambda------
-  
   # Load  data
-  all_data.df <- read.csv(paste0("data/data_mar_celentano/lambda_sparse_",as.numeric(Is_sparse),"_Rad_",as.numeric(Is_Rad),".csv"))
+  # 构建搜索模式
+  pattern <- paste0("sparse_", as.numeric(Is_sparse), "_Rad_", as.numeric(Is_Rad), ".*\\.csv$")
+  file_name <- list.files("data/data_mar_celentano", pattern = pattern)
+
+  all_data.df <- read.csv(paste0("data/data_mar_celentano/",file_name))
   
-  head(all_data.df)
+  # head(all_data.df)
   nrow(all_data.df)
   print(unique(all_data.df$n))
   print(unique(all_data.df$lambda.y))
