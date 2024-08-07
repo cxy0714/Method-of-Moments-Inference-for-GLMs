@@ -19,10 +19,10 @@ We introduce moments-based identification strategies for statistical functionals
 We implemented two simulation settings.
 
 #### Estimating Logistic Model Coefficients and Quadratic Forms
-The first involves estimating GLM (logistic model) coefficients and quadratic forms, where we compare our methods with those of **Bellec (2022)**[^1].
+The first involves estimating GLM (logistic model) coefficients and quadratic forms, where we compare our methods with that of **Bellec (2022)**[^1].
 
-- Our method's code is in the folder `code_simulation/code_glm_mom`.
-- Bellec's method's code is in the folder `code_simulation/code_glm_bellec`.
+- Our method's code is in the folder `code_simulation/code_glm_mom`. The code is the same in all files except for the initial setting section.
+- Bellec's method's code is in the folder `code_simulation/code_glm_bellec`. The code is the same in all files except for the initial setting section.
 
 To generate Figures 1, 3, 7, 9, and 11, use `glm_clean_cluster_bellec.R`, `glm_clean_cluster_mom.R`, and `glm_plot_lambda.R` in the folder `code_clean_plot` after obtaining the data.
 
@@ -31,8 +31,8 @@ To generate Figures 2, 4, 6, 8, and 12, use `glm_clean_cluster_bellec.R`, `glm_c
 #### Estimating the Mean of a Response Under Missing Data
 The second simulation setting involves estimating the mean of a response under random missingness, where the outcome model is a linear model and the missingness mechanism is a logistic model. We compare our methods with those of **Celentano and Wainwright (2023)**[^2].
 
-- Our method's code is in the folder `code_simulation/code_mar_mom`.
-- Celentano and Wainwright's method's code is in the folder `code_simulation/code_mar_celentano`, with minor adjustments made to their original code available at [this GitHub repository](https://github.com/mcelentano/Debiasing_for_missing_data).
+- Our method's code is in the folder `code_simulation/code_mar_mom`. The code is the same in all files except for the initial setting section.
+- Celentano and Wainwright's method's code is in the folder `code_simulation/code_mar_celentano`, with minor adjustments made to their original code available at [this GitHub repository](https://github.com/mcelentano/Debiasing_for_missing_data). The code is the same in all files except for the initial setting section.
 
 To generate Figures 5, 10, 13, and 15, use `mar_clean_cluster_mom.R` and `mar_plot_lambda.R` in the folder `code_clean_plot` after obtaining the data.
 
