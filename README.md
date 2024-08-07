@@ -38,7 +38,7 @@ To generate Figures 5, 10, 13, and 15, use `mar_clean_cluster_mom.R` and `mar_pl
 
 To generate Figures 6, 12, 14, and 16, use `mar_clean_cluster_mom.R` and `mar_plot_mom_hist_qqnorm.R` in the folder `code_clean_plot` after obtaining the data.
 
-Any questions about the code, fell free to contact me. 
+Any questions about the code, fell free to contact xingyuchen0714@sjtu.edu.cn. By the way, You should really seal up functions that are used multiple times
 
 [^1]: **Bellec P C. Observable adjustments in single-index models for regularized M-estimators**[J]. arXiv preprint arXiv:2204.06990, 2022.
 

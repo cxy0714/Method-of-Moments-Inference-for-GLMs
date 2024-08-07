@@ -11,7 +11,7 @@ indices_first_1 <- 1:10
 indices_middle_2 <- 100:109
 indices_selected <- c(indices_first_1, indices_middle_2)
 # 定义三元组
-triplets <- c( "0_0_0", "0_0_1")
+triplets <- c( "1_0_0", "1_0_1", "1_1_1")
 
 # c("0_0_0", "0_0_1", "1_0_0", "1_0_1", "1_1_1")
 # 遍历每个三元组
@@ -42,14 +42,14 @@ for (triplet in triplets) {
     Is_sparse,
     "_one_",
     Is_sparse_only_one,
-    "_Ra_",
+    "_Rad_",
     Is_Rad,
     "_p_over_n_",
     p_over_n,
     ".pdf"
   )
   
-  pdf(pdf_filename, height = 20, width = 16)
+  pdf(pdf_filename, height = 16, width = 16)
   par(mfrow = c(4, 4))
   
   # 标题
@@ -85,7 +85,7 @@ for (triplet in triplets) {
   # 标题
   titles <- c(
     expression(alpha[1] ~ "(nonzero)"),
-    expression(alpha[100] ~ "(nonzero)")
+    expression(alpha[100] ~ "(zero)")
   )
   
   alpha <- alpha[indices_selected]

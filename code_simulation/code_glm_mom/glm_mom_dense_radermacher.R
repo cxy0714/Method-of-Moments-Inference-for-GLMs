@@ -13,9 +13,9 @@ library(nleqslv)
 library(rootSolve)
 library("SMUT")
 
-N.replicates <- 500
+N.replicates <- 2
 n.p.ratio <- 1.2
-n_list <-  seq(1000, 5000, length.out = 5)
+n_list <-  seq(1000, 5000, length.out = 1)
 
 Is_sparse =  FALSE
 Is_sparse_only_1 =  FALSE
@@ -30,7 +30,7 @@ indices_selected <- c(indices_first_1, indices_middle_2)
 unique_seed <- as.integer(Sys.time())
 set.seed(unique_seed)
 # 生成随机整数
-seeds <- sample(1:1000, N.replicates)
+random_replicates <- sample(1:1000000, N.replicates)
 
 numCores <- detectCores()
 
@@ -38,6 +38,9 @@ R.version <- version
 glmnet.version <- packageVersion("glmnet")
 system.version <- Sys.info()
 sim.time <- format(Sys.time(), "%Y%m%d_%H%M%S")
+
+
+
 
 
 # function ----
@@ -169,12 +172,14 @@ for (j in c(1:length(n_list))) {
     .packages = c("glmnet", "MASS", "mvtnorm", "lsbclust", "nleqslv", "SMUT")
   ) %dorng% {
     result <- tryCatch({
+      
+     
       if (Is_Rad) {
         X_1 <- matrix(rbinom(n * p, size = 1, prob = 0.5),
                       nrow = n,
                       ncol = p)
         
-        X_1 <- (2 * X_T - 1) / sqrt(omega_11)
+        X_1 <- (2 * X_1 - 1) / sqrt(omega_11)
         
       } else  {
         X_1 <- matrix(rnorm(n * p, mean = 0, sd = 1 / sqrt(omega_11)),
@@ -227,9 +232,11 @@ for (j in c(1:length(n_list))) {
       
       
       alpha_est_N <- alpha_est_N[indices_selected]
+      alpha <- alpha[indices_selected]
       return(
         list(
           success = TRUE,
+          alpha = alpha,
           alpha_est_N = alpha_est_N,
           mu_alpha_est = mu_alpha_est,
           alpha_L2_est_N = alpha_L2_est_N,
@@ -266,6 +273,7 @@ for (j in c(1:length(n_list))) {
       mu_alpha_est[i] <- sim_res[[i]]$mu_alpha_est
       sols_em[i, ] <- sim_res[[i]]$sols_em
       moments_em[i, ] <- sim_res[[i]]$moments_em
+
     }
   }
   # options(scipen = 999)
@@ -303,10 +311,10 @@ for (j in c(1:length(n_list))) {
       "_iter_",
       N.replicates,
       "_sparse_",
-      as.numeric(s),
-      "_omegma",
-      as.numeric(omega_11),
-      "_Ra_",
+      as.numeric(Is_sparse),
+      "_one_",
+      as.numeric(Is_sparse_only_1),
+      "_Rad_",
       as.numeric(Is_Rad),
       "_",
       sim.time,

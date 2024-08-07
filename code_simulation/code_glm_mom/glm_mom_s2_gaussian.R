@@ -39,6 +39,9 @@ glmnet.version <- packageVersion("glmnet")
 system.version <- Sys.info()
 sim.time <- format(Sys.time(), "%Y%m%d_%H%M%S")
 
+
+
+
 # function ----
 epsilon <- 0
 integrand_forward_mapping <- function (x, mu, sigma_sq) {
@@ -162,18 +165,30 @@ for (j in c(1:length(n_list))) {
   epsilon_par <- rnorm(2, 0, 1 / p)
   sols_oracle <- nleqslv(par_truth + epsilon_par, fn)$x
   
-
+  
   sim_res <-  foreach(
     i = 1:N.replicates,
     .packages = c("glmnet", "MASS", "mvtnorm", "lsbclust", "nleqslv", "SMUT")
   ) %dorng% {
     result <- tryCatch({
+      
+      if (Is_sparse & Is_sparse_only_1) {
+        alpha <- rep(0, p)
+        alpha[1] <- 1
+      } else  if (Is_sparse) {
+        s <- round(sqrt(p))
+        alpha <- rep(0, p)
+        alpha[c(1:s)] <- sqrt(omega_11 / s)
+      } else {
+        alpha <- runif(p, -sqrt(3 * omega_11 / p), sqrt(3 * omega_11 / p))
+      }
+      
       if (Is_Rad) {
         X_1 <- matrix(rbinom(n * p, size = 1, prob = 0.5),
                       nrow = n,
                       ncol = p)
         
-        X_1 <- (2 * X_T - 1) / sqrt(omega_11)
+        X_1 <- (2 * X_1 - 1) / sqrt(omega_11)
         
       } else  {
         X_1 <- matrix(rnorm(n * p, mean = 0, sd = 1 / sqrt(omega_11)),
@@ -226,9 +241,11 @@ for (j in c(1:length(n_list))) {
       
       
       alpha_est_N <- alpha_est_N[indices_selected]
+      alpha <- alpha[indices_selected]
       return(
         list(
           success = TRUE,
+          alpha = alpha,
           alpha_est_N = alpha_est_N,
           mu_alpha_est = mu_alpha_est,
           alpha_L2_est_N = alpha_L2_est_N,
@@ -256,15 +273,16 @@ for (j in c(1:length(n_list))) {
   mu_alpha_est <- alpha_L2_est_N <- rep(NA, N.replicates)
   moments_em <-  matrix(NA, nrow = N.replicates, ncol = 4)
   sols_em <- matrix(NA, nrow = N.replicates, ncol = 2)
-  alpha_est_N  <-  matrix(NA, nrow = N.replicates, ncol = length(indices_selected))
+  alpha_est_N  <- alpha <-  matrix(NA, nrow = N.replicates, ncol = length(indices_selected))
   for (i in 1:N.replicates) {
     
     if (sim_res[[i]]$success){
-    alpha_L2_est_N[i] <- sim_res[[i]]$alpha_L2_est_N
-    alpha_est_N[i, ] <- sim_res[[i]]$alpha_est_N
-    mu_alpha_est[i] <- sim_res[[i]]$mu_alpha_est
-    sols_em[i, ] <- sim_res[[i]]$sols_em
-    moments_em[i, ] <- sim_res[[i]]$moments_em
+      alpha_L2_est_N[i] <- sim_res[[i]]$alpha_L2_est_N
+      alpha_est_N[i, ] <- sim_res[[i]]$alpha_est_N
+      mu_alpha_est[i] <- sim_res[[i]]$mu_alpha_est
+      sols_em[i, ] <- sim_res[[i]]$sols_em
+      moments_em[i, ] <- sim_res[[i]]$moments_em
+      alpha[i,] <- sim_res[[i]]$alpha
     }
   }
   # options(scipen = 999)
@@ -302,10 +320,10 @@ for (j in c(1:length(n_list))) {
       "_iter_",
       N.replicates,
       "_sparse_",
-      as.numeric(s),
-      "_omegma",
-      as.numeric(omega_11),
-      "_Ra_",
+      as.numeric(Is_sparse),
+      "_one_",
+      as.numeric(Is_sparse_only_1),
+      "_Rad_",
       as.numeric(Is_Rad),
       "_",
       sim.time,

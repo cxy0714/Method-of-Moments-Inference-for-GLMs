@@ -9,7 +9,7 @@ library("SMUT")
 # setting----
 N.replicates <- 500
 Is_sparse <- TRUE
-sample_Rad <- FALSE
+Is_Rad <- FALSE
 n_list <- round(exp(seq(log(1e2), log(1e4), length.out = 10)))
 n_list <- 5000
 
@@ -129,7 +129,7 @@ for (j in c(1:length(n_list)) ) {
     i = 1:  N.replicates,
     .packages = c("glmnet","nleqslv","SMUT")
   ) %dorng% {
-    if (sample_Rad & omega_11 == 1) {
+    if (Is_Rad & omega_11 == 1) {
       X_1 <- matrix(2 * rbinom(n * p, size = 1, prob = 0.5) - 1, nrow = n, ncol = p)
       
     } else if (omega_11 == 1)  {
@@ -233,8 +233,8 @@ for (j in c(1:length(n_list)) ) {
       N.replicates,
       "_sparse_",
       as.numeric(Is_sparse),
-      "_Ra_",
-      as.numeric(sample_Rad),
+      "_Rad_",
+      as.numeric(Is_Rad),
       "_",
       sim.time,
       ".RDa"

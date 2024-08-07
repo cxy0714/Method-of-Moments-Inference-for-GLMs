@@ -38,7 +38,7 @@ for (triplet in triplets) {
   pdf_filename_parameters <- paste0(
     "plots/plots_mar_hist_qqnorm/glm_mar_para_norm_sparse_",
     Is_sparse,
-    "_Ra_",
+    "_Rad_",
     Is_Rad,
     "_p_over_n_",
     p_over_n,

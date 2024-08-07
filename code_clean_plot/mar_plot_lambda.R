@@ -232,7 +232,7 @@ for (triplet in triplets) {
   pdf_filename_lambda <- paste0(
     "plots/plots_mar_lambda/glm_mar_lambda_sparse_",
     as.numeric(Is_sparse),
-    "_Ra_",
+    "_Rad_",
     as.numeric(Is_Rad),
     "_p_over_n_",
     p_over_n,

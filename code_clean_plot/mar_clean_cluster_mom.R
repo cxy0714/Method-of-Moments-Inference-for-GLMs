@@ -8,7 +8,7 @@ file_path <- "data/data_mar_mom_hist"
 file_names <- list.files(file_path , pattern = "\\.Rda$", full.names = TRUE)
 
 # 提取三元组
-triplets <- unique(gsub(".*sparse_(\\d)_Ra_(\\d).*", "\\1_\\2", basename(file_names)))
+triplets <- unique(gsub(".*sparse_(\\d)_Rad_(\\d).*", "\\1_\\2", basename(file_names)))
 
 # 遍历每个三元组
 for (triplet in triplets) {
@@ -23,7 +23,7 @@ for (triplet in triplets) {
   sparse_value <- triplet_parts[1]
   Ra_value <- triplet_parts[2]
   
-  current_files <- file_names[grepl(paste0(".*sparse_", sparse_value,"_Ra_", Ra_value, ".*"), basename(file_names))]
+  current_files <- file_names[grepl(paste0(".*sparse_", sparse_value,"_Rad_", Ra_value, ".*"), basename(file_names))]
   
   # 移动文件到对应的三元组文件夹
   file.rename(from = current_files, to = file.path(triplet_folder, basename(current_files)))

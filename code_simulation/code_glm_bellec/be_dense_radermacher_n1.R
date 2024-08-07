@@ -22,7 +22,7 @@ ns <- seq(nsmall, nbig, length.out = ns.length)
 ns <- ns[c(1:4)]
 # ns <- ns[5]
 
-N.replicates = 50
+N.replicates = 25
 
 p.n.ratio = 1.2
 lambda_value = exp(seq(log(10) , log(.05) , length.out = 12))

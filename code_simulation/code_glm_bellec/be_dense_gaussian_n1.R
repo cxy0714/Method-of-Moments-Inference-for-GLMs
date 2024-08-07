@@ -22,7 +22,7 @@ ns <- seq(nsmall, nbig, length.out = ns.length)
 ns <- ns[c(1:4)]
 # ns <- ns[5]
 
-N.replicates = 50
+N.replicates = 25
 
 p.n.ratio = 1.2
 lambda_value = exp(seq(log(10) , log(.05) , length.out = 12))
@@ -47,8 +47,6 @@ filename.out = paste0(
   ns[length(ns)],
   "_p_",
   p.n.ratio,
-  "_iter_",
-  N.replicates,
   "_sparse_",
   as.integer(Is_sparse),
   "_one_",
@@ -63,8 +61,6 @@ filename.tracking = paste0(
   ns[length(ns)],
   "_p_",
   p.n.ratio,
-  "_iter_",
-  N.replicates,
   "_sparse_",
   as.integer(Is_sparse),
   "_one_",
