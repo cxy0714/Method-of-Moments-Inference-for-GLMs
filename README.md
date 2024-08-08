@@ -7,7 +7,7 @@
     <a style="text-decoration:none !important;" href=" " alt="arXiv"><img src="https://img.shields.io/badge/paper-arXiv-red" /></a>
 </p>
 
-We introduce moments-based identification strategies for statistical functionals within high-dimensional generalized linear models (GLMs), where the dimension \( p \) is proportional to the sample size \( n \) and the covariance matrix of covariates is known. Key advantages of our methods include:
+We introduce moments-based identification strategies for statistical functionals within high-dimensional generalized linear models (GLMs), where the dimension \( p \) is proportional to the sample size \( n \) and **the covariance matrix of covariates is known**. Key advantages of our methods include:
 
 1. **Computational Efficiency**: Relying on only a few low-dimensional moments of the data, our methods are computationally efficient.
 
