@@ -21,8 +21,8 @@ We implemented two simulation settings.
 #### Estimating Logistic Model Coefficients and Quadratic Forms
 The first involves estimating GLM (logistic model) coefficients and quadratic forms, where we compare our methods with that of **Bellec (2022)**[^1].
 
-- Our method's code is in the folder `code_simulation/code_glm_mom`. The code is the same in all files except for the initial setting section.
-- Bellec's method's code is in the folder `code_simulation/code_glm_bellec`. The code is the same in all files except for the initial setting section.
+- Our method's code is located in the folder `code_simulation/code_glm_mom`. The code is consistent across all files, with variations only in the initial settings section.
+- Bellec's method's code can be found in the folder `utils/function_of_bellec.R` and `code_simulation/code_glm_bellec`. The main function resides in `utils/function_of_bellec.R`, complete with detailed notes. In `code_simulation/code_glm_bellec`, the files are identical except for the initial settings section.
 
 To generate Figures 1, 3, 7, 9, and 11, use `glm_clean_cluster_bellec.R`, `glm_clean_cluster_mom.R`, and `glm_plot_lambda.R` in the folder `code_clean_plot` after obtaining the data.
 
