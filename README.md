@@ -4,7 +4,7 @@
 <p align="center" style="margin-bottom:0px; border-bottom:0px; padding-bottom:0px">Xingyu Chen, Lin Liu, Rajarshi Mukherjee</p>
 
 <p align="center">
-    <a style="text-decoration:none !important;" href=" " alt="arXiv"><img src="https://img.shields.io/badge/paper-arXiv-red" /></a>
+    <a style="text-decoration:none !important;" href="https://arxiv.org/abs/2408.06103" alt="arXiv"><img src="https://img.shields.io/badge/paper-arXiv-red" /></a>
 </p>
 
 We introduce moments-based identification strategies for statistical functionals within high-dimensional generalized linear models (GLMs), where the dimension \( p \) is proportional to the sample size \( n \) and **the covariance matrix of covariates is known**. Key advantages of our methods include:
