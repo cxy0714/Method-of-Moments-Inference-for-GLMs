@@ -1,3 +1,15 @@
+#### New Update (10/10/2024): Demo for Unknown Sigma and p < n/2-3 Case
+
+We updated a demo for the case of unknown sigma and p less than n/2-3:
+
+- The demo is located in the folder `demo_glm_MoM`
+- For usage guidelines, please refer to the `example.R` file in this folder
+
+This demo showcases our method's application in scenarios where the covariance matrix (sigma) is unknown 
+and the number of predictors (p) is less than half the sample size minus 3 (p < n/2-3).
+
+The code will be improved later!
+
 
 <h1 align="center" style="margin-bottom:0px; border-bottom:0px; padding-bottom:0px">Method-of-Moments-Inference-for-GLMs</h1>
 <h3 align="center" style="margin-bottom:0px; border-bottom:0px; padding-bottom:0px">Method-of-Moments Inference for GLMs and Doubly Robust Functionals under Proportional Asymptotics</h3>
@@ -6,6 +18,8 @@
 <p align="center">
     <a style="text-decoration:none !important;" href="https://arxiv.org/abs/2408.06103" alt="arXiv"><img src="https://img.shields.io/badge/paper-arXiv-red" /></a>
 </p>
+
+
 
 We introduce moments-based identification strategies for statistical functionals within high-dimensional generalized linear models (GLMs), where the dimension \( p \) is proportional to the sample size \( n \) and **the covariance matrix of covariates is known**. Key advantages of our methods include:
 
