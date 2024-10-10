@@ -14,7 +14,7 @@ A_T <- rbinom(n, 1, 1 / (1 + exp(-z_T)))
 A_T <- as.numeric(A_T)
 
 ###################################################
-# par_initial_4 is the initial estimator of alpha %*% mu_x, alpha %*% Sigma %*% alpha, we will fix this initial problem later 
+# par_initial is the initial estimator of alpha %*% mu_x, alpha %*% Sigma %*% alpha, we will fix this initial problem later 
 # B_bootstrap is the number of bootstrap iterations used to calculate the variance
 ###################################################
 par_initial <- c(0.1,1.1)
