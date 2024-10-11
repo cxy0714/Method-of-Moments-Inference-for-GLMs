@@ -1,24 +1,28 @@
 # Load function needed for glm_mom_unknown_sigma
-source("function_of_glm_mom.R")
+source("demo_glm_MoM/function_of_glm_mom.R")
+# After first run, You can use following load for fast start
+# source("demo_glm_MoM/dependecy.R")
+# load("demo_glm_MoM/all_functions_and_objects_mom.RData")
 
 # Define parameters
-n <- 1000
-p <- 200
+n <- 2000
+p <- 600
 
-X_T <- matrix(rnorm(n * p, mean = 0, sd = 1), nrow = n, ncol = p)
+X <- matrix(rnorm(n * p, mean = 0, sd = 1), nrow = n, ncol = p)
 # Generate alpha vector, alpha %*% Sigma %*% alpha should be between 0 and 2 preferably
+set.seed(1234)
 alpha <- runif(p, 0, 1)
-alpha <- alpha / sqrt(sum(alpha^2))
-z_T <- X_T %*% alpha
-A_T <- rbinom(n, 1, 1 / (1 + exp(-z_T)))
-A_T <- as.numeric(A_T)
+alpha <- alpha / sqrt(sum(alpha ^ 2))
+z <- X %*% alpha
+A <- rbinom(n, 1, 1 / (1 + exp(-z)))
+A <- as.numeric(A)
 
 ###################################################
-# par_initial is the initial estimator of alpha %*% mu_x, alpha %*% Sigma %*% alpha, we will fix this initial problem later 
+# par_initial is the initial estimator of alpha %*% mu_x, alpha %*% Sigma %*% alpha, we will fix this initial problem later
 # B_bootstrap is the number of bootstrap iterations used to calculate the variance
 ###################################################
-par_initial <- c(0.1,1.1)
-model_results <- glm_mom_unknown_sigma(X_T,A_T, B_bootstrap = 1000,par_initial = par_initial )
+par_initial <- c(0.1, 1.1)
+model_results <- glm_mom_unknown_sigma(X, A, B_bootstrap = 1000, par_initial = par_initial)
 str(model_results)
 ###################################################
 # alpha_em_S_4 is estimator of alpha, when unknown mu_x = 0, similarly, suffixes with 4 are all for unknown mu_x = 0
