@@ -1,4 +1,4 @@
-source("demo_glm_MoM/dependecy.R")
+source("demo_glm_MoM/dependency..R")
 # function -----
 epsilon <- 0
 integrand_forward_mapping <- function (x, mu, sigma_sq) {
